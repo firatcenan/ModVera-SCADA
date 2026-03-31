@@ -1,0 +1,92 @@
+
+
+## 🏗️ Technical Architecture (UML Component Diagram)
+
+The system follows a service-oriented architecture where the background service handles critical telemetry while the GUI provides the user interface and AI orchestration.
+
+```mermaid
+graph TD
+    subgraph "Industrial Environment"
+        MD[Modbus TCP Device / PLC]
+    end
+
+    subgraph "Modvera Background Service (logger_service.py)"
+        MC[Modbus Client]
+        LOG[Logger Loop]
+        DB_SQL[(SQLite Database)]
+        LIVE_JSON[live_data.json]
+        HLT[Health Monitor]
+    end
+
+    subgraph "Modvera GUI Dashboard (main.py)"
+        UI[UI Thread]
+        LVW[Live Viewer]
+        RPT[Report Generator]
+        AI_P[AI Panel]
+    end
+
+    subgraph "Artificial Intelligence (Anthropic)"
+        CLAUDE[Claude-3.5 Sonnet API]
+    end
+
+    %% Data Flow
+    MD <-->|Polling/TCP| MC
+    MC --> LOG
+    LOG -->|Atomic Write| DB_SQL
+    LOG -->|Atomic Update| LIVE_JSON
+    HLT -->|Self-Check| LOG
+
+    LIVE_JSON -.->|Read| LVW
+    DB_SQL -.->|Query| RPT
+    LVW --> UI
+    RPT --> UI
+
+    %% AI Flow
+    UI --> AI_P
+    AI_P -->|Current Readings| CLAUDE
+    CLAUDE -->|Situational Analysis| AI_P
+    AI_P -->|Turkish Report| UI
+```
+
+## 🔄 AI Data Analyst Flow (FBD Style)
+
+This logic diagram shows how data is transformed from raw Modbus registers into actionable AI insights.
+
+```mermaid
+graph LR
+    subgraph "Inputs"
+        R1[Register 40001]
+        R2[Coil 00001]
+        R3[Input 30005]
+    end
+
+    subgraph "Processing Logic"
+        direction TB
+        F1[Normalization]
+        F2[Alias Mapping]
+        F3[JSON Snapshot]
+    end
+
+    subgraph "AI Catalyst"
+        PROM["Prompt Builder"]
+        ANAL["Claude AI Engine"]
+    end
+
+    subgraph "Outputs"
+        DISP["GUI Dashboard"]
+        REPT["Situation Report"]
+        ADVI["Operator Advice"]
+    end
+
+    R1 & R2 & R3 --> F1
+    F1 --> F2
+    F2 --> F3
+    F3 --> PROM
+    PROM --> ANAL
+    ANAL --> REPT
+    REPT --> DISP
+    REPT --> ADVI
+```
+
+---
+
