@@ -51,4 +51,4 @@ python main.py
 `ai`, `scada`, `machine-learning`, `deep-learning`, `modbus`, `automation`, `industrial-iot`, `python`, `monitoring`, `system-monitoring`
 
 ---
-*Developed with ❤️ and AI-driven precision.*
+
