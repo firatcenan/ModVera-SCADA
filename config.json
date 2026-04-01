@@ -1,0 +1,39 @@
+{
+  "ip": "188.38.164.83",
+  "port": 5020,
+  "slave_id": 1,
+  "func_code": "3 (Read Holding Registers)",
+  "start_addr": 0,
+  "count": 20,
+  "log_interval": "1",
+  "live_rate": "10",
+  "startup_health_timeout_sec": 90,
+  "runtime_watchdog_live_sec": 30,
+  "runtime_watchdog_db_sec": 120,
+  "polling_profiles": {
+    "1": {
+      "enabled": true,
+      "slave_id": 1,
+      "start_addr": 0,
+      "count": 20
+    },
+    "2": {
+      "enabled": false,
+      "slave_id": 1,
+      "start_addr": 0,
+      "count": 1
+    },
+    "3": {
+      "enabled": true,
+      "slave_id": 1,
+      "start_addr": 0,
+      "count": 20
+    },
+    "4": {
+      "enabled": false,
+      "slave_id": 1,
+      "start_addr": 0,
+      "count": 1
+    }
+  }
+}

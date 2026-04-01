@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\retro\Desktop\Project\main.py", line 1431, in <module>
+    app = ModbusLoggerApp(user_info=login.user_info)
+  File "C:\Users\retro\Desktop\Project\main.py", line 124, in __init__
+    self.navigate("Log & Reports")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\retro\Desktop\Project\main.py", line 128, in navigate
+    self.tabview.set(name)
+    ~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\retro\AppData\Roaming\Python\Python314\site-packages\customtkinter\windows\widgets\ctk_tabview.py", line 429, in set
+    raise ValueError(f"CTkTabview has no tab named '{name}'")
+ValueError: CTkTabview has no tab named 'Log & Reports'
